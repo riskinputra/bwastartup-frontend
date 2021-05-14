@@ -7,7 +7,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'bwastartup-frontend',
+    title: 'BWA STARTUP',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -49,7 +49,29 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http://backer-backend.buildwithangga.id/api/v1/'
+    baseURL: 'https://backer-backend.buildwithangga.id/'
+  },
+
+  // Auth
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'data.token',
+          // required: true,
+          // type: 'Bearer'
+        },
+        user: {
+          property: 'data',
+          // autoFetch: true
+        },
+        endpoints: {
+          login: { url: '/api/v1//sessions', method: 'post' },
+          logout: false,
+          user: { url: '/api/v1//users/fetch', method: 'get' }
+        }
+      }
+    }
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
