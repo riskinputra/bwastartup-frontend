@@ -49,7 +49,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://backer-backend.buildwithangga.id/'
+    baseURL: 'http://backer-backend.buildwithangga.id/'
   },
 
   // Auth
@@ -66,9 +66,9 @@ export default {
           // autoFetch: true
         },
         endpoints: {
-          login: { url: '/api/v1//sessions', method: 'post' },
+          login: { url: '/api/v1/sessions', method: 'post' },
           logout: false,
-          user: { url: '/api/v1//users/fetch', method: 'get' }
+          user: { url: '/api/v1/users/fetch', method: 'get' }
         }
       }
     }

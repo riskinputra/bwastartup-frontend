@@ -14,6 +14,7 @@
               >Email Address</label
             >
             <input
+              v-model="login.email"
               type="email"
               class="auth-form focus:outline-none focus:bg-purple-hover focus:shadow-outline focus:border-purple-hover-stroke focus:text-gray-100"
               placeholder="Write your email address here"
@@ -27,17 +28,19 @@
               >Password</label
             >
             <input
+              v-model="login.password"
               type="password"
               class="auth-form focus:outline-none focus:bg-purple-hover focus:shadow-outline focus:border-purple-hover-stroke focus:text-gray-100"
               placeholder="Write your password here"
               value="nasigorenglimaribbu"
+              @keyup.enter="userLogin"
             />
           </div>
         </div>
         <div class="mb-6">
           <div class="mb-4">
             <button
-              @click="$router.push({ path: '/' })"
+              @click="userLogin"
               class="block w-full bg-orange-button hover:bg-green-button text-white font-semibold px-6 py-4 text-lg rounded-full"
             >
               Sign In
@@ -59,7 +62,26 @@
 
 <script>
 export default {
-  layout: 'auth'
+  layout: 'auth',
+  data() {
+    return {
+      login: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    async userLogin() {
+      try {
+        let response = await this.$auth.loginWith('local', { data: this.login })
+        this.$auth.setUser(response.data.data)
+        console.log('res', response)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
 }
 </script>
 
